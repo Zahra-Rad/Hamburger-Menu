@@ -19,10 +19,15 @@ body {
     width: 300px;
     height: 535px;
     margin-top: 100px;
+    background-color: #4b304e;
+    overflow: hidden;
+    position: relative;
     > header {
       background-color: #4b304e;
       > div {
         padding: 25px;
+        overflow: hidden;
+
         > button {
           background-color: transparent;
           color: #ec7263;
@@ -32,6 +37,9 @@ body {
           justify-content: center;
           align-items: center;
           cursor: pointer;
+          z-index: 10;
+          scale: 1;
+          transition: 400ms ease-out;
           &::before {
             content: "";
             background-color: #432b46;
@@ -45,7 +53,7 @@ body {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0);
-            transition: 400ms ease-in-out;
+            transition: 400ms ease-out;
           }
           > span {
             position: relative;
@@ -57,14 +65,167 @@ body {
           }
         }
         > ul {
+          width: 100%;
           list-style: none;
           padding: 20px 30px;
+          transition: 400ms ease-out;
+          height: 184px;
+          position: relative;
+          &::before {
+            content: "";
+            border-radius: 50%;
+            width: 600px;
+            height: 600px;
+            top: -150%;
+            left: -120%;
+            transition: 400ms ease-out;
+            position: absolute;
+            scale: 1.2;
+            background-color: #4b304e;
+            z-index: 1;
+          }
           > li {
+            /* width: 250px; */
+            width: fit-content;
             padding: 10px 15px;
             font-size: 14px;
+            height: 36px;
+            transition: 400ms ease-out;
+            z-index: 100;
+            position: relative;
+            > a {
+              transition: 400ms ease-out;
+              &:last-of-type {
+                transform: translateY(0%);
+              }
+            }
           }
         }
       }
     }
+    > div {
+      &::after {
+        opacity: 0;
+      }
+      > section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        > div {
+          display: flex;
+          margin-bottom: 15px;
+          &:first-of-type {
+            height: 75px;
+            width: 75px;
+            background-color: #ec7263;
+            border-radius: 50%;
+          }
+          &:last-of-type {
+            > span {
+              height: 10px;
+              margin: 5px;
+              border-radius: 5px;
+              background-color: #c06162;
+              &:first-of-type {
+                width: 50px;
+              }
+              &:last-of-type {
+                width: 80px;
+              }
+            }
+          }
+        }
+      }
+      > article {
+        width: 200px;
+        height: 300px;
+        background-color: #febe7e;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        position: relative;
+        &::before,
+        &::after {
+          content: "";
+          width: 25px;
+          height: 210px;
+          position: absolute;
+        }
+        &::before {
+          background-color: #9d567c;
+          left: -25px;
+        }
+        &::after {
+          background-color: #958c6b;
+          right: -25px;
+        }
+      }
+    }
+  }
+}
+
+.hidden {
+  scale: 0;
+  position: absolute;
+}
+
+.minimized {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  padding: 8px;
+  padding-top: 10px;
+  &::before {
+    content: "";
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    /* transform: translateX(0%); */
+    position: absolute;
+    background-color: #432b46;
+    scale: 1;
+  }
+  > li {
+    padding: 0;
+    height: 24px;
+    width: 24px;
+    display: flex;
+    align-items: center;
+    padding-left: 2px;
+    position: relative;
+    > a {
+      background-color: #ec7263;
+      font-size: 3px;
+      pointer-events: none;
+    }
+    &:last-of-type {
+      transform: translateY(-100%);
+    }
+  }
+}
+
+.overlay {
+  &::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000065;
+    visibility: visible;
+    opacity: 0.5;
+    transition: opacity 0.2s ease-in;
+  }
+  >section{
+    margin-top: 30px;
   }
 }
